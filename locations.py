@@ -1,4 +1,8 @@
 #!flask/bin/python
+#
+# based on tutorial code found at: 
+#    http://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
+#
 from flask import Flask, jsonify
 from flask import abort
 from flask import request
@@ -10,11 +14,10 @@ import json
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
-
         
-# !!!!!
+#
 # Model class
-# !!!!!
+#
 class Location(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	nickname = db.Column(db.String(30), unique=False)
@@ -44,8 +47,7 @@ class Location(db.Model):
 			'lat'		: self.lat,
 			'lng'		: self.lng,
 		}
-       
-               
+                   
 #
 # 404 error handler
 #
@@ -132,7 +134,6 @@ def delete_location(location_id):
 	db.session.commit()    
 	return jsonify( { 'result': True } )
 
-
 #
 # modify response headers
 #
@@ -145,9 +146,8 @@ def after_request(data):
     response.headers['Access-Control-Allow-Methods'] = 'GET,POST,PUT,DELETE,OPTIONS'
     return response
 
-
 #
 # run the application
 # 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(host='localhost', debug = True)
