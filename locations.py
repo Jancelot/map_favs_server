@@ -59,7 +59,7 @@ def not_found(error):
 # GET - read all locations
 #
 #return jsonify( { 'locations': locations } )
-@app.route('/ubertest/api/v1.0/locations', methods = ['GET'])
+@app.route('/mapfavs/api/v1.0/locations', methods = ['GET'])
 def get_locations():
 	locsresult = Location.query.all()
 	locations = [i.serialize for i in locsresult]
@@ -68,7 +68,7 @@ def get_locations():
 #
 # GET - read location specified by id
 #
-@app.route('/ubertest/api/v1.0/locations/<int:location_id>', methods = ['GET'])
+@app.route('/mapfavs/api/v1.0/locations/<int:location_id>', methods = ['GET'])
 def get_location(location_id):
 	locresult = Location.query.get(location_id)  
 	if locresult is None:
@@ -79,7 +79,7 @@ def get_location(location_id):
 #
 # POST - create location
 #        
-@app.route('/ubertest/api/v1.0/locations', methods = ['POST'])
+@app.route('/mapfavs/api/v1.0/locations', methods = ['POST'])
 def create_location():
 	if not request.json:
 		abort(400)
@@ -99,7 +99,7 @@ def create_location():
 #
 # PUT - update location
 #   
-@app.route('/ubertest/api/v1.0/locations/<int:location_id>', methods = ['PUT'])
+@app.route('/mapfavs/api/v1.0/locations/<int:location_id>', methods = ['PUT'])
 def update_location(location_id):
 	locresult = Location.query.get(location_id)
 	if locresult is None:
@@ -125,7 +125,7 @@ def update_location(location_id):
 #
 # DELETE - delete location
 #
-@app.route('/ubertest/api/v1.0/locations/<int:location_id>', methods = ['DELETE'])
+@app.route('/mapfavs/api/v1.0/locations/<int:location_id>', methods = ['DELETE'])
 def delete_location(location_id):
 	locresult = Location.query.get(location_id)
 	if locresult is None:
